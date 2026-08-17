@@ -1,26 +1,201 @@
 @import "tailwindcss";
 
+/* ============================================================================
+   AlgoKabs design tokens
+   Warm charcoal ground, cream type, gold used sparingly. The restraint is the
+   point: gold appears on the mark, the primary action, and active state — and
+   almost nowhere else. Everything structural is sage or border.
+   ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ground */
+  --bg: #14130f;
+  --surface: #1c1a15;
+  --surface-2: #24211b;
+  --border: #2e2a22;
+  --border-strong: #3d382d;
+
+  /* type */
+  --fg: #f0ead9;
+  --muted: #a29b8c;
+  /* Still the quietest tone, but lifted to clear 4.5:1 — this ends up on real
+     copy (tech list, footer) and a lot of readers are on phones outdoors. */
+  --muted-dim: #8b8578;
+
+  /* brand */
+  --gold: #c9a227;
+  --gold-bright: #e0b83a;
+  --gold-ink: #17140a;
+  --sage: #7d8471;
+
+  /* semantic — desaturated to sit on the warm ground */
+  --live: #93a96b;
+  --warn: #c2913f;
+  --danger: #c4736a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-foreground: var(--fg);
+  --color-muted: var(--muted);
+  --color-muted-dim: var(--muted-dim);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-ink: var(--gold-ink);
+  --color-sage: var(--sage);
+  --color-live: var(--live);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+
+  /* Kept as aliases so existing components keep working. */
+  --color-primary: var(--gold);
+  --color-primary-foreground: var(--gold-ink);
+  --color-accent: var(--gold);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-instrument-serif);
+  --font-mark: var(--font-josefin);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Serif for display type — the one clear "not a signals guy" signal. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-instrument-serif), Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--gold) 35%, transparent);
+    color: var(--fg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── Utilities ───────────────────────────────────────────────────────────── */
+
+@utility eyebrow {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+@utility text-gold-gradient {
+  background: linear-gradient(
+    100deg,
+    #8a6d16 0%,
+    var(--gold-bright) 28%,
+    #f3dd8e 46%,
+    var(--gold) 62%,
+    #8a6d16 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility rule {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-strong) 20%,
+    var(--border-strong) 80%,
+    transparent
+  );
+  height: 1px;
+}
+
+/* A single soft pool of light, not a neon glow. */
+@utility lift {
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, var(--fg) 6%, transparent) inset,
+    0 18px 50px -24px rgb(0 0 0 / 0.8);
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────────── */
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes node-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-soft {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.trace-path {
+  stroke-dasharray: var(--len, 400);
+  stroke-dashoffset: var(--len, 400);
+  animation: draw 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.25s forwards;
+}
+
+.trace-node {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.live-dot {
+  animation: pulse-soft 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .trace-path {
+    stroke-dashoffset: 0;
+  }
+  .trace-node {
+    opacity: 1;
+  }
 }
