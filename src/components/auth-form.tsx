@@ -110,8 +110,17 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
           minLength={8}
           autoComplete={mode === "signup" ? "new-password" : "current-password"}
         />
-        {mode === "signup" && (
+        {mode === "signup" ? (
           <p className="mt-1.5 text-xs text-muted">At least 8 characters.</p>
+        ) : (
+          <p className="mt-1.5 text-right">
+            <Link
+              href="/forgot-password"
+              className="text-xs text-muted transition-colors hover:text-gold"
+            >
+              Forgot your password?
+            </Link>
+          </p>
         )}
       </div>
 
