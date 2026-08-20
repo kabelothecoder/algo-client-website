@@ -97,12 +97,12 @@ export function IntakeChat({
             <div
               className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                 m.role === "user"
-                  ? "bg-primary/15 ring-1 ring-inset ring-primary/25"
+                  ? "bg-gold/12 ring-1 ring-inset ring-gold/25"
                   : "bg-surface-2 ring-1 ring-inset ring-border"
               }`}
             >
               {m.role === "assistant" && (
-                <Bot className="mb-1.5 h-3.5 w-3.5 text-primary" />
+                <Bot className="mb-1.5 h-3.5 w-3.5 text-gold" />
               )}
               <p className="whitespace-pre-wrap">{m.content}</p>
             </div>
@@ -126,14 +126,14 @@ export function IntakeChat({
         <button
           type="submit"
           disabled={busy || !input.trim()}
-          className="inline-flex shrink-0 items-center rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground transition hover:brightness-110 disabled:opacity-50"
+          className="inline-flex shrink-0 items-center rounded-xl bg-gold px-4 text-sm font-semibold text-gold-ink transition hover:bg-gold-bright disabled:opacity-50"
         >
           <Send className="h-4 w-4" />
         </button>
       </form>
 
       {error && (
-        <p className="rounded-xl bg-red-500/10 px-3.5 py-2.5 text-sm text-red-300 ring-1 ring-inset ring-red-500/20">
+        <p className="rounded-xl bg-danger/10 px-3.5 py-2.5 text-sm text-danger ring-1 ring-inset ring-danger/20">
           {error}
         </p>
       )}
@@ -156,8 +156,8 @@ export function IntakeChat({
       </div>
 
       {summary && (
-        <div className="rounded-2xl border border-primary/25 bg-primary/5 p-5">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-primary">
+        <div className="rounded-2xl border border-gold/25 bg-gold/[0.06] p-5">
+          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gold">
             Draft specification
           </p>
           <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed">

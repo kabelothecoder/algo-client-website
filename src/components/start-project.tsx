@@ -13,7 +13,7 @@ import { btnPrimary, inputClass, Label } from "@/components/ui";
 function Err({ state }: { state: ActionState }) {
   if (!state.error) return null;
   return (
-    <p className="rounded-xl bg-red-500/10 px-3.5 py-2.5 text-sm text-red-300 ring-1 ring-inset ring-red-500/20">
+    <p className="rounded-xl bg-danger/10 px-3.5 py-2.5 text-sm text-danger ring-1 ring-inset ring-danger/20">
       {state.error}
     </p>
   );
@@ -56,11 +56,11 @@ export function StartProject({ defaultService }: { defaultService?: string }) {
           onClick={() => setTab("new")}
           className={`rounded-2xl border p-5 text-left transition ${
             tab === "new"
-              ? "border-primary/60 bg-primary/5"
-              : "border-border bg-surface-2 hover:border-primary/30"
+              ? "border-gold/60 bg-gold/[0.07]"
+              : "border-border bg-surface-2 hover:border-gold/30"
           }`}
         >
-          <Sparkles className="h-5 w-5 text-primary" />
+          <Sparkles className="h-5 w-5 text-gold" />
           <p className="mt-3 font-medium">Start a new project</p>
           <p className="mt-1 text-sm text-muted">
             Get a written scope and price before paying anything.

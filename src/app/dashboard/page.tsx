@@ -25,7 +25,7 @@ export default async function DashboardPage({
   return (
     <div className="space-y-10">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Your projects</h1>
+        <h1 className="text-2xl">Your projects</h1>
         <p className="mt-1 text-sm text-muted">
           Every build, its agreed scope and where it stands right now.
         </p>
@@ -42,7 +42,7 @@ export default async function DashboardPage({
             <Link
               key={p.id}
               href={`/dashboard/projects/${p.id}`}
-              className="group block rounded-2xl border border-border bg-surface/50 p-5 transition hover:border-primary/40 hover:bg-surface"
+              className="group block rounded-2xl border border-border bg-surface/50 p-5 transition hover:border-gold/40 hover:bg-surface"
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="min-w-0">

@@ -45,8 +45,8 @@ export function QuoteFlow() {
     const declined = state.outcome === "declined";
     return (
       <div className="rounded-2xl border border-border bg-surface/50 p-8 text-center">
-        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-primary/15">
-          <Check className="h-5 w-5 text-primary" />
+        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-gold/15">
+          <Check className="h-5 w-5 text-gold" />
         </div>
         <h2 className="mt-5 text-xl font-semibold">
           {declined ? "No problem at all." : "Got it — I'll come back to you."}
@@ -113,9 +113,9 @@ export function QuoteFlow() {
             <span
               className={`grid h-6 w-6 shrink-0 place-items-center rounded-full text-[11px] font-semibold ${
                 step > i + 1
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-gold text-gold-ink"
                   : step === i + 1
-                    ? "bg-primary/20 text-primary ring-1 ring-primary/40"
+                    ? "bg-gold/20 text-gold ring-1 ring-gold/40"
                     : "bg-surface-2 text-muted"
               }`}
             >
@@ -140,8 +140,8 @@ export function QuoteFlow() {
                 onClick={() => setService(s.slug)}
                 className={`rounded-2xl border p-5 text-left transition ${
                   service === s.slug
-                    ? "border-primary/60 bg-primary/5"
-                    : "border-border bg-surface/50 hover:border-primary/30"
+                    ? "border-gold/60 bg-gold/[0.07]"
+                    : "border-border bg-surface/50 hover:border-gold/30"
                 }`}
               >
                 <p className="font-medium">{s.name}</p>
@@ -177,11 +177,11 @@ export function QuoteFlow() {
               onClick={() => setPath("budget")}
               className={`rounded-2xl border p-5 text-left transition ${
                 path === "budget"
-                  ? "border-primary/60 bg-primary/5"
-                  : "border-border bg-surface/50 hover:border-primary/30"
+                  ? "border-gold/60 bg-gold/[0.07]"
+                  : "border-border bg-surface/50 hover:border-gold/30"
               }`}
             >
-              <CircleDollarSign className="h-5 w-5 text-primary" />
+              <CircleDollarSign className="h-5 w-5 text-gold" />
               <p className="mt-3 font-medium">I know my budget</p>
               <p className="mt-1 text-sm text-muted">
                 Pick a range and see exactly what it buys.
@@ -193,11 +193,11 @@ export function QuoteFlow() {
               onClick={() => setPath("enquiry")}
               className={`rounded-2xl border p-5 text-left transition ${
                 path === "enquiry"
-                  ? "border-primary/60 bg-primary/5"
-                  : "border-border bg-surface/50 hover:border-primary/30"
+                  ? "border-gold/60 bg-gold/[0.07]"
+                  : "border-border bg-surface/50 hover:border-gold/30"
               }`}
             >
-              <MessageCircleQuestion className="h-5 w-5 text-primary" />
+              <MessageCircleQuestion className="h-5 w-5 text-gold" />
               <p className="mt-3 font-medium">Quote my system</p>
               <p className="mt-1 text-sm text-muted">
                 Describe it, ask questions, get a price back.
@@ -216,8 +216,8 @@ export function QuoteFlow() {
                     onClick={() => setBand(b.id)}
                     className={`rounded-xl border px-4 py-3 text-left text-sm transition ${
                       band === b.id
-                        ? "border-primary/60 bg-primary/5"
-                        : "border-border bg-surface-2 hover:border-primary/30"
+                        ? "border-gold/60 bg-gold/[0.07]"
+                        : "border-border bg-surface-2 hover:border-gold/30"
                     }`}
                   >
                     <span className="font-medium">{b.label}</span>
@@ -227,13 +227,13 @@ export function QuoteFlow() {
               </div>
 
               <div className="rounded-2xl border border-border bg-surface-2 p-5">
-                <p className="text-xs uppercase tracking-wide text-primary">
+                <p className="text-xs uppercase tracking-wide text-gold">
                   {selectedBand.tier} · {selectedBand.lead}
                 </p>
                 <ul className="mt-3 space-y-2">
                   {selectedBand.includes.map((item) => (
                     <li key={item} className="flex gap-2.5 text-sm text-muted">
-                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
+                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold" />
                       {item}
                     </li>
                   ))}
@@ -329,12 +329,12 @@ export function QuoteFlow() {
             <p className="font-medium">How payment works</p>
             <ul className="mt-3 space-y-2 text-sm text-muted">
               <li className="flex gap-2.5">
-                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold" />
                 You get a written scope, a fixed price and a delivery date
                 first. Nothing is payable until you accept it.
               </li>
               <li className="flex gap-2.5">
-                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold" />
                 <strong className="text-foreground/90">
                   Payment is upfront
                 </strong>{" "}
@@ -342,10 +342,10 @@ export function QuoteFlow() {
                 have 12 hours to cancel for a full refund before work begins.
               </li>
               <li className="flex gap-2.5">
-                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-primary" />
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold" />
                 If I miss the agreed date by more than 14 days without your
                 agreement, you get a full refund. That&rsquo;s in the{" "}
-                <Link href="/refunds" className="text-primary hover:underline">
+                <Link href="/refunds" className="text-gold hover:underline">
                   refund policy
                 </Link>
                 , not just a promise.
@@ -354,7 +354,7 @@ export function QuoteFlow() {
           </div>
 
           {state.error && (
-            <p className="rounded-xl bg-red-500/10 px-3.5 py-2.5 text-sm text-red-300 ring-1 ring-inset ring-red-500/20">
+            <p className="rounded-xl bg-danger/10 px-3.5 py-2.5 text-sm text-danger ring-1 ring-inset ring-danger/20">
               {state.error}
             </p>
           )}

@@ -125,12 +125,12 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
       </div>
 
       {error && (
-        <p className="rounded-xl bg-red-500/10 px-3.5 py-2.5 text-sm text-red-300 ring-1 ring-inset ring-red-500/20">
+        <p className="rounded-xl bg-danger/10 px-3.5 py-2.5 text-sm text-danger ring-1 ring-inset ring-danger/20">
           {error}
         </p>
       )}
       {notice && (
-        <p className="rounded-xl bg-emerald-500/10 px-3.5 py-2.5 text-sm text-emerald-300 ring-1 ring-inset ring-emerald-500/20">
+        <p className="rounded-xl bg-live/10 px-3.5 py-2.5 text-sm text-live ring-1 ring-inset ring-live/20">
           {notice}
         </p>
       )}
@@ -144,14 +144,14 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         {mode === "signup" ? (
           <>
             Already have an account?{" "}
-            <Link href="/login" className="text-primary hover:underline">
+            <Link href="/login" className="text-gold hover:underline">
               Sign in
             </Link>
           </>
         ) : (
           <>
             New client?{" "}
-            <Link href="/signup" className="text-primary hover:underline">
+            <Link href="/signup" className="text-gold hover:underline">
               Create an account
             </Link>
           </>

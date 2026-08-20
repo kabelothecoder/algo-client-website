@@ -46,7 +46,7 @@ export function MessageThread({
               <div
                 className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                   mine
-                    ? "bg-primary/15 ring-1 ring-inset ring-primary/25"
+                    ? "bg-gold/12 ring-1 ring-inset ring-gold/25"
                     : "bg-surface-2 ring-1 ring-inset ring-border"
                 }`}
               >
@@ -72,7 +72,7 @@ export function MessageThread({
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-foreground transition hover:brightness-110 disabled:opacity-50"
+          className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-gold px-4 text-sm font-semibold text-gold-ink transition hover:bg-gold-bright disabled:opacity-50"
         >
           {pending ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -82,7 +82,7 @@ export function MessageThread({
         </button>
       </form>
 
-      {state.error && <p className="text-sm text-red-300">{state.error}</p>}
+      {state.error && <p className="text-sm text-danger">{state.error}</p>}
     </div>
   );
 }

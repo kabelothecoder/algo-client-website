@@ -333,3 +333,45 @@ export async function deleteTestimonial(
   revalidatePath("/");
   return { ok: "Deleted" };
 }
+
+export async function markQuoteHandled(
+  _prev: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  const { supabase } = await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  const handled = formData.get("handled") === "true";
+
+  const { error } = await supabase
+    .from("quote_requests")
+    .update({ handled })
+    .eq("id", id);
+  if (error) return { error: error.message };
+
+  revalidatePath("/admin/quotes");
+  revalidatePath("/admin");
+  return { ok: handled ? "Marked handled" : "Reopened" };
+}
+
+export async function setSessionStatus(
+  _prev: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  const { supabase } = await requireAdmin();
+  const id = String(formData.get("id") ?? "");
+  const status = String(formData.get("status") ?? "");
+
+  if (!["requested", "confirmed", "done", "cancelled"].includes(status)) {
+    return { error: "Invalid status." };
+  }
+
+  const { error } = await supabase
+    .from("session_bookings")
+    .update({ status })
+    .eq("id", id);
+  if (error) return { error: error.message };
+
+  revalidatePath("/admin/sessions");
+  revalidatePath("/admin");
+  return { ok: `Marked ${status}` };
+}

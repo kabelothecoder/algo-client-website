@@ -36,7 +36,7 @@ export function BootstrapButton() {
         Make me the admin
       </button>
       {error && (
-        <p className="rounded-xl bg-red-500/10 px-3.5 py-2.5 text-sm text-red-300 ring-1 ring-inset ring-red-500/20">
+        <p className="rounded-xl bg-danger/10 px-3.5 py-2.5 text-sm text-danger ring-1 ring-inset ring-danger/20">
           {error}
         </p>
       )}

@@ -1,5 +1,6 @@
 import { requireAdmin } from "@/lib/auth";
 import { Card, Empty, Pill } from "@/components/ui";
+import { QuoteHandledToggle } from "@/components/admin-forms";
 import { SERVICE_LABEL, formatDateTime, BUDGET_BANDS } from "@/lib/constants";
 import type { ServiceType } from "@/lib/types";
 
@@ -40,7 +41,7 @@ export default async function QuotesPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Quote requests</h1>
+        <h1 className="text-2xl">Quote requests</h1>
         <p className="mt-1 text-sm text-muted">
           The declines are worth reading. If most people tick off at the same
           band, your entry price is wrong — not your pitch.
@@ -49,17 +50,17 @@ export default async function QuotesPage() {
 
       <div className="grid gap-4 sm:grid-cols-3">
         <Card>
-          <p className="text-3xl font-bold tabular-nums">{rows.length}</p>
+          <p className="font-[family-name:var(--font-geist-mono)] text-3xl tabular-nums">{rows.length}</p>
           <p className="mt-1 text-sm text-muted">Total requests</p>
         </Card>
         <Card>
-          <p className="text-3xl font-bold tabular-nums text-emerald-300">
+          <p className="font-[family-name:var(--font-geist-mono)] text-3xl tabular-nums text-live">
             {proceeding.length}
           </p>
           <p className="mt-1 text-sm text-muted">Want a quote</p>
         </Card>
         <Card>
-          <p className="text-3xl font-bold tabular-nums text-amber-300">
+          <p className="font-[family-name:var(--font-geist-mono)] text-3xl tabular-nums text-warn">
             {declined.length}
           </p>
           <p className="mt-1 text-sm text-muted">Out of budget</p>
@@ -76,7 +77,7 @@ export default async function QuotesPage() {
               className={`rounded-2xl border p-5 ${
                 r.outcome === "declined"
                   ? "border-border bg-surface/30"
-                  : "border-primary/25 bg-surface/60"
+                  : "border-gold/25 bg-surface/60"
               }`}
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
@@ -99,15 +100,18 @@ export default async function QuotesPage() {
                     · {formatDateTime(r.created_at)}
                   </p>
                 </div>
+                <div className="flex items-center gap-2">
                 <Pill
                   tone={
                     r.outcome === "declined"
-                      ? "bg-amber-500/15 text-amber-300 ring-amber-500/30"
-                      : "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30"
+                      ? "bg-warn/15 text-warn ring-warn/30"
+                      : "bg-live/15 text-live ring-live/30"
                   }
                 >
                   {r.outcome === "declined" ? "Ticked off" : "Wants a quote"}
                 </Pill>
+                <QuoteHandledToggle id={r.id} handled={r.handled} />
+                </div>
               </div>
 
               {r.system_notes && (

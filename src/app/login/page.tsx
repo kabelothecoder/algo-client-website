@@ -16,7 +16,7 @@ export default function LoginPage() {
         >
           <ArrowLeft className="h-4 w-4" /> Back to site
         </Link>
-        <h1 className="text-2xl font-bold tracking-tight">Client sign in</h1>
+        <h1 className="text-2xl">Client sign in</h1>
         <p className="mt-2 mb-8 text-sm text-muted">
           Track your build, message {SITE.name} and download your files.
         </p>

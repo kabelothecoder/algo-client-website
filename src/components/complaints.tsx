@@ -31,7 +31,7 @@ export function ComplaintList({
           className={`rounded-2xl border p-5 ${
             c.status === "resolved"
               ? "border-border bg-surface-2"
-              : "border-red-500/25 bg-red-500/5"
+              : "border-danger/25 bg-danger/[0.07]"
           }`}
         >
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -53,7 +53,7 @@ export function ComplaintList({
 
           {c.admin_response && (
             <div className="mt-4 rounded-xl border border-border bg-background/50 p-4">
-              <p className="text-xs uppercase tracking-wide text-primary">
+              <p className="text-xs uppercase tracking-wide text-gold">
                 Developer response
                 {c.responded_at && ` · ${formatDateTime(c.responded_at)}`}
               </p>
@@ -110,7 +110,7 @@ function AdminReply({ complaint }: { complaint: Complaint }) {
           Reply &amp; mark resolved
         </button>
       </div>
-      {state.error && <p className="text-sm text-red-300">{state.error}</p>}
+      {state.error && <p className="text-sm text-danger">{state.error}</p>}
     </form>
   );
 }
@@ -133,7 +133,7 @@ export function ComplaintForm({ projectId }: { projectId: string }) {
     return (
       <div className="space-y-3">
         {showSuccess && (
-          <p className="rounded-xl bg-emerald-500/10 px-3.5 py-2.5 text-sm text-emerald-300 ring-1 ring-inset ring-emerald-500/20">
+          <p className="rounded-xl bg-live/10 px-3.5 py-2.5 text-sm text-live ring-1 ring-inset ring-live/20">
             {state.ok}
           </p>
         )}
@@ -143,7 +143,7 @@ export function ComplaintForm({ projectId }: { projectId: string }) {
             setAckToken(state.token);
             setOpen(true);
           }}
-          className="inline-flex items-center gap-2 rounded-xl border border-red-500/30 bg-red-500/5 px-5 py-2.5 text-sm font-medium text-red-300 transition hover:bg-red-500/10"
+          className="inline-flex items-center gap-2 rounded-xl border border-danger/30 bg-danger/[0.07] px-5 py-2.5 text-sm font-medium text-danger transition hover:bg-danger/15"
         >
           <AlertTriangle className="h-4 w-4" />
           {showSuccess ? "Raise another complaint" : "Raise a complaint"}
@@ -188,7 +188,7 @@ export function ComplaintForm({ projectId }: { projectId: string }) {
       </div>
 
       {state.error && (
-        <p className="rounded-xl bg-red-500/10 px-3.5 py-2.5 text-sm text-red-300 ring-1 ring-inset ring-red-500/20">
+        <p className="rounded-xl bg-danger/10 px-3.5 py-2.5 text-sm text-danger ring-1 ring-inset ring-danger/20">
           {state.error}
         </p>
       )}

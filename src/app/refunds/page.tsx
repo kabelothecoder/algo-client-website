@@ -27,7 +27,7 @@ export default function RefundsPage() {
       <h1 className="text-3xl font-bold tracking-tight">Refund Policy</h1>
       <p className="mt-2 text-sm text-muted">Effective {UPDATED}</p>
 
-      <p className="mt-8 rounded-2xl border border-primary/25 bg-primary/5 p-5 leading-relaxed">
+      <p className="mt-8 rounded-2xl border border-gold/25 bg-gold/[0.06] p-5 leading-relaxed">
         Custom software is built for one client and cannot be resold, so it is
         not returnable the way a physical product is. What you are protected
         against is <strong>not receiving what you paid for</strong>. This policy
@@ -35,7 +35,7 @@ export default function RefundsPage() {
       </p>
 
       {/* Existing clients — a commitment, dated, in public. */}
-      <div className="mt-6 rounded-2xl border border-accent/30 bg-accent/5 p-5">
+      <div className="mt-6 rounded-2xl border border-sage/30 bg-sage/10 p-5">
         <p className="font-medium">Projects ordered before {UPDATED}</p>
         <p className="mt-2 leading-relaxed text-muted">
           This policy applies to projects ordered on or after {UPDATED}. Anything
@@ -132,7 +132,7 @@ export default function RefundsPage() {
       <H>7. How to request a refund</H>
       <P>
         Post it in your project message thread, or email{" "}
-        <a href={`mailto:${SITE.email}`} className="text-primary hover:underline">
+        <a href={`mailto:${SITE.email}`} className="text-gold hover:underline">
           {SITE.email}
         </a>
         . You will get a decision within 5 business days and the reason in

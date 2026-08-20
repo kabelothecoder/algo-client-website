@@ -5,6 +5,8 @@ import { Check, Loader2, Save, Send, Upload, X } from "lucide-react";
 import {
   addStatusUpdate,
   deleteSpecial,
+  markQuoteHandled,
+  setSessionStatus,
   deleteTestimonial,
   reviewPayment,
   saveSpecial,
@@ -23,13 +25,13 @@ import { btnGhost, btnPrimary, inputClass, Label } from "@/components/ui";
 function Feedback({ state }: { state: ActionState }) {
   if (state.error)
     return (
-      <p className="rounded-xl bg-red-500/10 px-3.5 py-2.5 text-sm text-red-300 ring-1 ring-inset ring-red-500/20">
+      <p className="rounded-xl bg-danger/10 px-3.5 py-2.5 text-sm text-danger ring-1 ring-inset ring-danger/20">
         {state.error}
       </p>
     );
   if (state.ok)
     return (
-      <p className="rounded-xl bg-emerald-500/10 px-3.5 py-2.5 text-sm text-emerald-300 ring-1 ring-inset ring-emerald-500/20">
+      <p className="rounded-xl bg-live/10 px-3.5 py-2.5 text-sm text-live ring-1 ring-inset ring-live/20">
         {state.ok}
       </p>
     );
@@ -38,8 +40,8 @@ function Feedback({ state }: { state: ActionState }) {
 
 const fileInputClass =
   "w-full rounded-xl border border-border bg-surface-2 px-3.5 py-2.5 text-sm file:mr-3 " +
-  "file:rounded-lg file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs " +
-  "file:font-semibold file:text-primary-foreground";
+  "file:rounded-lg file:border-0 file:bg-gold file:px-3 file:py-1.5 file:text-xs " +
+  "file:font-semibold file:text-gold-ink";
 
 // ── Project detail ─────────────────────────────────────────────────────────
 
@@ -172,7 +174,7 @@ export function PaymentReviewForm({
           name="decision"
           value="confirmed"
           disabled={pending}
-          className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500/15 px-4 py-2 text-sm font-medium text-emerald-300 ring-1 ring-inset ring-emerald-500/30 transition hover:bg-emerald-500/25 disabled:opacity-50"
+          className="inline-flex items-center gap-1.5 rounded-xl bg-live/15 px-4 py-2 text-sm font-medium text-live ring-1 ring-inset ring-live/30 transition hover:bg-live/25 disabled:opacity-50"
         >
           {pending ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Check className="h-3.5 w-3.5" />}
           Confirm
@@ -181,7 +183,7 @@ export function PaymentReviewForm({
           name="decision"
           value="rejected"
           disabled={pending}
-          className="inline-flex items-center gap-1.5 rounded-xl bg-red-500/15 px-4 py-2 text-sm font-medium text-red-300 ring-1 ring-inset ring-red-500/30 transition hover:bg-red-500/25 disabled:opacity-50"
+          className="inline-flex items-center gap-1.5 rounded-xl bg-danger/15 px-4 py-2 text-sm font-medium text-danger ring-1 ring-inset ring-danger/30 transition hover:bg-danger/25 disabled:opacity-50"
         >
           <X className="h-3.5 w-3.5" /> Reject
         </button>
@@ -223,7 +225,7 @@ export function DeliverableUploadForm({
         <input
           type="checkbox"
           name="released"
-          className="h-4 w-4 rounded border-border bg-surface-2 accent-cyan-400"
+          className="h-4 w-4 rounded border-border bg-surface-2 accent-[var(--gold)]"
         />
         Release to the client immediately
       </label>
@@ -259,7 +261,7 @@ export function DeliverableToggle({
         disabled={pending}
         className={`rounded-lg px-3 py-1.5 text-xs ring-1 ring-inset transition disabled:opacity-50 ${
           released
-            ? "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30"
+            ? "bg-live/15 text-live ring-live/30"
             : "bg-surface-2 text-muted ring-border hover:text-foreground"
         }`}
       >
@@ -334,7 +336,7 @@ export function SpecialForm({ special }: { special?: Special }) {
           type="checkbox"
           name="active"
           defaultChecked={special?.active}
-          className="h-4 w-4 rounded border-border bg-surface-2 accent-cyan-400"
+          className="h-4 w-4 rounded border-border bg-surface-2 accent-[var(--gold)]"
         />
         Show on the landing page
       </label>
@@ -360,7 +362,7 @@ export function SpecialToggle({ id, active }: { id: string; active: boolean }) {
         disabled={pending}
         className={`rounded-lg px-3 py-1.5 text-xs ring-1 ring-inset transition disabled:opacity-50 ${
           active
-            ? "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30"
+            ? "bg-live/15 text-live ring-live/30"
             : "bg-surface-2 text-muted ring-border hover:text-foreground"
         }`}
       >
@@ -386,7 +388,7 @@ export function DeleteButton({
       <input type="hidden" name="id" value={id} />
       <button
         disabled={pending}
-        className="rounded-lg px-3 py-1.5 text-xs text-muted transition hover:text-red-300 disabled:opacity-50"
+        className="rounded-lg px-3 py-1.5 text-xs text-muted transition hover:text-danger disabled:opacity-50"
       >
         Delete
       </button>
@@ -429,7 +431,7 @@ export function TestimonialForm() {
         <input
           type="checkbox"
           name="is_published"
-          className="h-4 w-4 rounded border-border bg-surface-2 accent-cyan-400"
+          className="h-4 w-4 rounded border-border bg-surface-2 accent-[var(--gold)]"
         />
         Publish on the landing page
       </label>
@@ -459,6 +461,63 @@ export function TestimonialToggle({
       <input type="hidden" name="is_published" value={String(!published)} />
       <button disabled={pending} className={btnGhost + " !px-3 !py-1.5 !text-xs"}>
         {published ? "Unpublish" : "Publish"}
+      </button>
+    </form>
+  );
+}
+
+export function QuoteHandledToggle({
+  id,
+  handled,
+}: {
+  id: string;
+  handled: boolean;
+}) {
+  const [, action, pending] = useActionState<ActionState, FormData>(
+    markQuoteHandled,
+    {},
+  );
+  return (
+    <form action={action}>
+      <input type="hidden" name="id" value={id} />
+      <input type="hidden" name="handled" value={String(!handled)} />
+      <button
+        disabled={pending}
+        className={`rounded-lg px-3 py-1.5 text-xs ring-1 ring-inset transition-colors disabled:opacity-50 ${
+          handled
+            ? "bg-live/15 text-live ring-live/30"
+            : "bg-surface-2 text-muted ring-border hover:text-foreground"
+        }`}
+      >
+        {handled ? "Handled" : "Mark handled"}
+      </button>
+    </form>
+  );
+}
+
+export function SessionStatusButtons({ id }: { id: string }) {
+  const [, action, pending] = useActionState<ActionState, FormData>(
+    setSessionStatus,
+    {},
+  );
+  return (
+    <form action={action} className="flex gap-2">
+      <input type="hidden" name="id" value={id} />
+      <button
+        name="status"
+        value="confirmed"
+        disabled={pending}
+        className="rounded-lg bg-live/15 px-3 py-1.5 text-xs text-live ring-1 ring-inset ring-live/30 transition-colors hover:bg-live/25 disabled:opacity-50"
+      >
+        Confirm
+      </button>
+      <button
+        name="status"
+        value="cancelled"
+        disabled={pending}
+        className="rounded-lg px-3 py-1.5 text-xs text-muted transition-colors hover:text-danger disabled:opacity-50"
+      >
+        Cancel
       </button>
     </form>
   );

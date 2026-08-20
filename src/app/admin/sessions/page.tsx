@@ -1,5 +1,6 @@
 import { requireAdmin } from "@/lib/auth";
 import { Card, Empty, Pill } from "@/components/ui";
+import { SessionStatusButtons } from "@/components/admin-forms";
 import { formatDate, formatDateTime, formatMoney } from "@/lib/constants";
 
 export const metadata = { title: "Sessions" };
@@ -41,7 +42,7 @@ export default async function SessionsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">One-on-one sessions</h1>
+        <h1 className="text-2xl">One-on-one sessions</h1>
         <p className="mt-1 text-sm text-muted">
           Fastest money on the site — no build backlog attached to any of these.
         </p>
@@ -49,17 +50,17 @@ export default async function SessionsPage() {
 
       <div className="grid gap-4 sm:grid-cols-3">
         <Card>
-          <p className="text-3xl font-bold tabular-nums">{rows.length}</p>
+          <p className="font-[family-name:var(--font-geist-mono)] text-3xl tabular-nums">{rows.length}</p>
           <p className="mt-1 text-sm text-muted">Total requests</p>
         </Card>
         <Card>
-          <p className="text-3xl font-bold tabular-nums text-amber-300">
+          <p className="font-[family-name:var(--font-geist-mono)] text-3xl tabular-nums text-warn">
             {pending.length}
           </p>
           <p className="mt-1 text-sm text-muted">Awaiting confirmation</p>
         </Card>
         <Card>
-          <p className="text-3xl font-bold tabular-nums text-emerald-300">
+          <p className="font-[family-name:var(--font-geist-mono)] text-3xl tabular-nums text-live">
             {formatMoney(revenue)}
           </p>
           <p className="mt-1 text-sm text-muted">Value not yet booked</p>
@@ -110,12 +111,17 @@ export default async function SessionsPage() {
                   <Pill
                     tone={
                       r.status === "requested"
-                        ? "bg-amber-500/15 text-amber-300 ring-amber-500/30"
-                        : "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30"
+                        ? "bg-warn/15 text-warn ring-warn/30"
+                        : "bg-live/15 text-live ring-live/30"
                     }
                   >
                     {r.status}
                   </Pill>
+                  {r.status === "requested" && (
+                    <div className="mt-2 flex justify-end">
+                      <SessionStatusButtons id={r.id} />
+                    </div>
+                  )}
                 </div>
               </div>
 

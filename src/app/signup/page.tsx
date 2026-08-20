@@ -15,7 +15,7 @@ export default function SignupPage() {
         >
           <ArrowLeft className="h-4 w-4" /> Back to site
         </Link>
-        <h1 className="text-2xl font-bold tracking-tight">Create your account</h1>
+        <h1 className="text-2xl">Create your account</h1>
         <p className="mt-2 mb-8 text-sm text-muted">
           Free to open. You only pay once a scope and price are agreed in writing.
         </p>

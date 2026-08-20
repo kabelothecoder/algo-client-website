@@ -128,6 +128,8 @@ export type Complaint = {
 export type ChatMessage = { role: "user" | "assistant"; content: string };
 
 export type AdminStats = {
+  new_quotes: number;
+  new_sessions: number;
   active_projects: number;
   awaiting_payment: number;
   open_complaints: number;

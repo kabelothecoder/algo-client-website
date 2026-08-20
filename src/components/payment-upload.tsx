@@ -48,7 +48,7 @@ export function PaymentUpload({ projectId }: { projectId: string }) {
           type="file"
           accept="image/png,image/jpeg,image/webp,application/pdf"
           required
-          className="w-full rounded-xl border border-border bg-surface-2 px-3.5 py-2.5 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary-foreground"
+          className="w-full rounded-xl border border-border bg-surface-2 px-3.5 py-2.5 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-gold file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-gold-ink"
         />
         <p className="mt-1.5 text-xs text-muted">
           PNG, JPG, WEBP or PDF, under 10 MB. Only you and the developer can see it.
@@ -56,12 +56,12 @@ export function PaymentUpload({ projectId }: { projectId: string }) {
       </div>
 
       {state.error && (
-        <p className="rounded-xl bg-red-500/10 px-3.5 py-2.5 text-sm text-red-300 ring-1 ring-inset ring-red-500/20">
+        <p className="rounded-xl bg-danger/10 px-3.5 py-2.5 text-sm text-danger ring-1 ring-inset ring-danger/20">
           {state.error}
         </p>
       )}
       {state.ok && (
-        <p className="rounded-xl bg-emerald-500/10 px-3.5 py-2.5 text-sm text-emerald-300 ring-1 ring-inset ring-emerald-500/20">
+        <p className="rounded-xl bg-live/10 px-3.5 py-2.5 text-sm text-live ring-1 ring-inset ring-live/20">
           {state.ok}
         </p>
       )}

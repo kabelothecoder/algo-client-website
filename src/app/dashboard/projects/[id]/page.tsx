@@ -132,7 +132,7 @@ export default async function ProjectPage({
       <div>
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">{project.title}</h1>
+            <h1 className="text-2xl">{project.title}</h1>
             <p className="mt-1 text-sm text-muted">
               {SERVICE_LABEL[project.service]} · opened{" "}
               {formatDate(project.created_at)}
@@ -148,7 +148,7 @@ export default async function ProjectPage({
         <div className="mt-6 flex flex-wrap items-center gap-2 rounded-2xl border border-border bg-surface/50 px-5 py-4 text-sm">
           {confirmedPayment ? (
             <>
-              <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+              <CheckCircle2 className="h-4 w-4 text-live" />
               <span>
                 Payment confirmed{" "}
                 {confirmedPayment.reviewed_at &&
@@ -162,7 +162,7 @@ export default async function ProjectPage({
             </>
           ) : (
             <>
-              <Clock className="h-4 w-4 text-amber-400" />
+              <Clock className="h-4 w-4 text-warn" />
               <span className="text-muted">
                 No payment confirmed yet. Work starts once it is — upload your
                 proof below and it will be reviewed by hand.
@@ -318,7 +318,7 @@ export default async function ProjectPage({
                 className="flex items-center justify-between gap-3 rounded-xl border border-border bg-surface-2 px-4 py-3"
               >
                 <div className="flex min-w-0 items-center gap-3">
-                  <FileText className="h-4 w-4 shrink-0 text-primary" />
+                  <FileText className="h-4 w-4 shrink-0 text-gold" />
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium">{d.file_name}</p>
                     {d.notes && (

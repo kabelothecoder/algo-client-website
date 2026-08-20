@@ -26,7 +26,7 @@ export default async function TestimonialsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Client results</h1>
+        <h1 className="text-2xl">Client results</h1>
         <p className="mt-1 text-sm text-muted">
           Published results appear on the landing page under the risk notice.
           Anything you post here is public and permanent enough to be screenshotted
@@ -62,7 +62,7 @@ export default async function TestimonialsPage() {
                   <Pill
                     tone={
                       t.is_published
-                        ? "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30"
+                        ? "bg-live/15 text-live ring-live/30"
                         : ""
                     }
                   >

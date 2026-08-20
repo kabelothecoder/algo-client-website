@@ -21,7 +21,7 @@ export default async function SpecialsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Specials</h1>
+        <h1 className="text-2xl">Specials</h1>
         <p className="mt-1 text-sm text-muted">
           The newest active special shows as a banner at the top of the landing
           page.

@@ -44,8 +44,8 @@ export function SessionBooking() {
   if (state.ok) {
     return (
       <div className="rounded-2xl border border-border bg-surface/50 p-8 text-center">
-        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-primary/15">
-          <Check className="h-5 w-5 text-primary" />
+        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-gold/15">
+          <Check className="h-5 w-5 text-gold" />
         </div>
         <h2 className="mt-5 text-xl font-semibold">Session requested</h2>
         <p className="mx-auto mt-3 max-w-md leading-relaxed text-muted">
@@ -78,13 +78,13 @@ export function SessionBooking() {
               onClick={() => setSessionId(s.id)}
               className={`rounded-2xl border p-5 text-left transition ${
                 sessionId === s.id
-                  ? "border-primary/60 bg-primary/5"
-                  : "border-border bg-surface/50 hover:border-primary/30"
+                  ? "border-gold/60 bg-gold/[0.07]"
+                  : "border-border bg-surface/50 hover:border-gold/30"
               }`}
             >
               <div className="flex items-baseline justify-between gap-2">
                 <p className="font-medium">{s.name}</p>
-                <span className="shrink-0 text-sm font-semibold text-primary">
+                <span className="shrink-0 text-sm font-semibold text-gold">
                   {formatMoney(s.fee)}
                 </span>
               </div>
@@ -106,11 +106,11 @@ export function SessionBooking() {
             onClick={() => setMode("in_person")}
             className={`rounded-2xl border p-5 text-left transition ${
               mode === "in_person"
-                ? "border-primary/60 bg-primary/5"
-                : "border-border bg-surface/50 hover:border-primary/30"
+                ? "border-gold/60 bg-gold/[0.07]"
+                : "border-border bg-surface/50 hover:border-gold/30"
             }`}
           >
-            <MapPin className="h-5 w-5 text-primary" />
+            <MapPin className="h-5 w-5 text-gold" />
             <p className="mt-3 font-medium">In person</p>
             <p className="mt-1 text-sm text-muted">
               I come to you. Travel is charged by distance.
@@ -121,11 +121,11 @@ export function SessionBooking() {
             onClick={() => setMode("online")}
             className={`rounded-2xl border p-5 text-left transition ${
               mode === "online"
-                ? "border-primary/60 bg-primary/5"
-                : "border-border bg-surface/50 hover:border-primary/30"
+                ? "border-gold/60 bg-gold/[0.07]"
+                : "border-border bg-surface/50 hover:border-gold/30"
             }`}
           >
-            <Monitor className="h-5 w-5 text-primary" />
+            <Monitor className="h-5 w-5 text-gold" />
             <p className="mt-3 font-medium">Online</p>
             <p className="mt-1 text-sm text-muted">
               Screen share. No travel fee, anywhere in the country.
@@ -160,7 +160,7 @@ export function SessionBooking() {
           {trip && (
             <div className="rounded-2xl border border-border bg-surface-2 p-5">
               <div className="flex items-center gap-2 text-sm">
-                <Route className="h-4 w-4 text-primary" />
+                <Route className="h-4 w-4 text-gold" />
                 <span className="font-medium">{trip.km} km</span>
                 <span className="text-muted">
                   from {BASE_LOCATION.label} (straight line)
@@ -179,7 +179,7 @@ export function SessionBooking() {
       )}
 
       {/* Total */}
-      <div className="rounded-2xl border border-primary/25 bg-primary/5 p-5">
+      <div className="rounded-2xl border border-gold/25 bg-gold/[0.06] p-5">
         <div className="flex items-center justify-between text-sm">
           <span className="text-muted">{session.name}</span>
           <span>{formatMoney(session.fee)}</span>
@@ -198,7 +198,7 @@ export function SessionBooking() {
             </span>
           </div>
         )}
-        <div className="mt-3 flex items-center justify-between border-t border-primary/20 pt-3">
+        <div className="mt-3 flex items-center justify-between border-t border-gold/20 pt-3">
           <span className="font-medium">Total</span>
           <span className="text-lg font-bold">
             {trip?.quoted ? "On quote" : formatMoney(total)}
@@ -240,7 +240,7 @@ export function SessionBooking() {
       </div>
 
       {state.error && (
-        <p className="rounded-xl bg-red-500/10 px-3.5 py-2.5 text-sm text-red-300 ring-1 ring-inset ring-red-500/20">
+        <p className="rounded-xl bg-danger/10 px-3.5 py-2.5 text-sm text-danger ring-1 ring-inset ring-danger/20">
           {state.error}
         </p>
       )}
