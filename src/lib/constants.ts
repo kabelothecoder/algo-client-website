@@ -5,8 +5,8 @@ export const SITE = {
   position: "Systems Engineering & Trading Automation",
   tagline: "Custom trading bots, built to spec and tracked in the open.",
   devSite: "https://algokabs.com",
-  whatsapp: "https://wa.me/27000000000", // TODO: replace with your real number
-  email: "hello@algokabs.com", // TODO: replace
+  whatsapp: "https://wa.me/27816349103",
+  email: "kabelongcwatywa@icloud.com",
 };
 
 /**
