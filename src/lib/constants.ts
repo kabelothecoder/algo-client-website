@@ -341,3 +341,21 @@ export function formatDateTime(value: string) {
     minute: "2-digit",
   });
 }
+
+/**
+ * Site-wide announcement. Set `active: false` to remove it everywhere.
+ * Keep every claim here literally true — a scarcity or credential statement
+ * that cannot be backed up is a misleading representation under the Consumer
+ * Protection Act, and it is the kind of thing that gets screenshotted.
+ */
+export const ANNOUNCEMENT = {
+  active: true,
+  eyebrow: "Rates change 1 September 2026",
+  title: "Current pricing is available until 31 August",
+  body: [
+    "I am studying toward formal certification in software development and MQL5 programming, and putting real hours into improving how these systems are built and tested.",
+    "From 1 September my rates increase significantly — around four times current pricing — and I am capping how many builds I take on at once so every project gets finished properly instead of queued.",
+  ],
+  footnote:
+    "If you want a build at current rates, start it before 31 August. Your price is locked once a scope is agreed in writing, even if the work runs into September.",
+};

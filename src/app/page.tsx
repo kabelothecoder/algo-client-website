@@ -14,7 +14,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Reveal } from "@/components/reveal";
 import { Logo, LogoMark } from "@/components/logo";
 import { SectionTitle } from "@/components/ui";
-import { SERVICES, SITE } from "@/lib/constants";
+import { ANNOUNCEMENT, SERVICES, SITE } from "@/lib/constants";
 import type { Special, Testimonial } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -197,6 +197,27 @@ export default async function LandingPage() {
             </Reveal>
           </div>
         </section>
+
+        {/* ── Announcement ─────────────────────────────────────────── */}
+        {ANNOUNCEMENT.active && (
+          <section className="px-6 pb-4">
+            <Reveal>
+              <div className="mx-auto max-w-3xl rounded-3xl border border-gold/25 bg-linear-to-b from-gold/[0.07] to-transparent p-8 md:p-10">
+                <p className="eyebrow">{ANNOUNCEMENT.eyebrow}</p>
+                <h2 className="mt-4 text-2xl md:text-3xl">{ANNOUNCEMENT.title}</h2>
+                {ANNOUNCEMENT.body.map((line) => (
+                  <p key={line} className="mt-4 leading-relaxed text-muted">
+                    {line}
+                  </p>
+                ))}
+                <div className="rule my-6" />
+                <p className="text-sm leading-relaxed text-foreground/90">
+                  {ANNOUNCEMENT.footnote}
+                </p>
+              </div>
+            </Reveal>
+          </section>
+        )}
 
         {/* ── Services ─────────────────────────────────────────────── */}
         <section id="services" className="scroll-mt-20 px-6 py-24">

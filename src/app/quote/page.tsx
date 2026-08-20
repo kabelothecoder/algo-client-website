@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ArrowLeft, Tag } from "lucide-react";
+import { ArrowLeft, Clock, Tag } from "lucide-react";
 import { QuoteFlow } from "@/components/quote-flow";
 import { createClient } from "@/lib/supabase/server";
-import { SITE } from "@/lib/constants";
+import { ANNOUNCEMENT, SITE } from "@/lib/constants";
 import type { Special } from "@/lib/types";
 
 export const metadata = {
@@ -69,6 +69,18 @@ export default async function QuotePage() {
             <p className="mt-2 text-sm text-muted">
               The bands below are the normal prices. Your quote comes back with
               the discount already applied.
+            </p>
+          </div>
+        </div>
+      )}
+
+      {ANNOUNCEMENT.active && (
+        <div className="mb-10 flex items-start gap-3 rounded-2xl border border-border bg-surface/60 p-5">
+          <Clock className="mt-0.5 h-4 w-4 shrink-0 text-sage" />
+          <div>
+            <p className="font-medium">{ANNOUNCEMENT.title}</p>
+            <p className="mt-1 text-sm leading-relaxed text-muted">
+              {ANNOUNCEMENT.footnote}
             </p>
           </div>
         </div>
